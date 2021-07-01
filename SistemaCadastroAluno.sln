@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCadastroAluno", "SistemaCadastroAluno\SistemaCadastroAluno.csproj", "{5F6F300D-6452-4F3C-87DB-FB52931CFCB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F6F300D-6452-4F3C-87DB-FB52931CFCB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F6F300D-6452-4F3C-87DB-FB52931CFCB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F6F300D-6452-4F3C-87DB-FB52931CFCB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F6F300D-6452-4F3C-87DB-FB52931CFCB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E6683E6-1D2C-4B16-A3BD-E0E31B082DFE}
+	EndGlobalSection
+EndGlobal
