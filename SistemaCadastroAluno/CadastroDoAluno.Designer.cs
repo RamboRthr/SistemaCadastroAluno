@@ -287,6 +287,7 @@ namespace SistemaCadastroAluno
             this.btnLimpar.TabIndex = 29;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnExcluir
             // 
@@ -296,6 +297,7 @@ namespace SistemaCadastroAluno
             this.btnExcluir.TabIndex = 30;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnOutro
             // 

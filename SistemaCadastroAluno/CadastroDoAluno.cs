@@ -110,6 +110,7 @@ namespace SistemaCadastroAluno
         {
             txtNomeAluno.Text = listaNomes[listAlunos.SelectedIndex];
             dataNascimento.Value = listaDataNascimento[listAlunos.SelectedIndex];
+            txtAno.Text = listaAno[listAlunos.SelectedIndex];
             if (listaSexo[listAlunos.SelectedIndex] == 'F')
             {
                 btnFem.Checked = true;
@@ -122,7 +123,37 @@ namespace SistemaCadastroAluno
             {
                 btnOutro.Checked = true;
             }
+            txtNomeResp1.Text = listaNomeResp1[listAlunos.SelectedIndex];
+            CPFResp1.Text = listaCPFResp1[listAlunos.SelectedIndex];
+            txtNomeResp2.Text = listaNomeResp2[listAlunos.SelectedIndex];
+            CPFResp2.Text = listaCPFResp2[listAlunos.SelectedIndex];
+        }
 
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtNomeAluno.Text = "";
+            dataNascimento.Value = DateTime.Today;
+            txtAno.Text = "";
+            btnFem.Checked = false;
+            btnMasc.Checked = false;
+            btnOutro.Checked = false;
+            txtNomeResp1.Text = "";
+            CPFResp1.Text = "";
+            txtNomeResp2.Text = "";
+            CPFResp2.Text = "";
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            listaNomes.RemoveAt(listAlunos.SelectedIndex);
+            listaDataNascimento.RemoveAt(listAlunos.SelectedIndex);
+            listaAno.RemoveAt(listAlunos.SelectedIndex);
+            listaSexo.RemoveAt(listAlunos.SelectedIndex);
+            listaNomeResp1.RemoveAt(listAlunos.SelectedIndex);
+            listaNomeResp2.RemoveAt(listAlunos.SelectedIndex);
+            listaCPFResp1.RemoveAt(listAlunos.SelectedIndex);
+            listaCPFResp2.RemoveAt(listAlunos.SelectedIndex);
+            listAlunos.Items.RemoveAt(listAlunos.SelectedIndex);
         }
     }
 }
