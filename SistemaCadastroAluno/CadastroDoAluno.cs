@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaCadastroAluno.Dominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,14 +15,8 @@ namespace SistemaCadastroAluno
         {
             InitializeComponent();
         }
-        List<string> listaNomes = new List<string>();
-        List<DateTime> listaDataNascimento = new List<DateTime>();
-        List<string> listaAno = new List<string>();
-        List<char> listaSexo = new List<char>();
-        List<string> listaNomeResp1 = new List<string>();
-        List<string> listaCPFResp1 = new List<string>();
-        List<string> listaNomeResp2 = new List<string>();
-        List<string> listaCPFResp2 = new List<string>();
+
+        List<CadastroAluno> cadastroAluno = new List<CadastroAluno>();
         bool novo;
 
         private void CadastroDoAluno_Load(object sender, EventArgs e)
@@ -80,7 +75,37 @@ namespace SistemaCadastroAluno
 
         private void SalvarDados()
         {
-            listaNomes.Add(txtNomeAluno.Text);
+            string charSexo = "";
+            
+            if (btnFem.Checked)
+            {
+                charSexo = "F";
+            }
+            else if (btnMasc.Checked)
+            {
+                charSexo = "M";
+            }
+            else if (btnOutro.Checked)
+            {
+                charSexo = "X";
+            }
+
+            cadastroAluno = new CadastroAluno
+            {
+
+                Nome = txtNomeResp1.Text,
+                DataNascimento = dataNascimento.Value,
+                AnoEscolar = txtAno.Text,
+                Sexo = charSexo.ToString(),
+                NomeResp1 = txtNomeResp1.Text,
+                CPFResp1 = CPFResp1.Text,
+                NomeResp2 = txtNomeResp2.Text,
+                CPFResp2 = CPFResp2.Text
+
+
+            };
+
+            /*listaNomes.Add(txtNomeAluno.Text);
             listaDataNascimento.Add(dataNascimento.Value);
             listaAno.Add(txtAno.Text.ToString());
             if (btnFem.Checked)
@@ -102,31 +127,35 @@ namespace SistemaCadastroAluno
             listaNomeResp1.Add(txtNomeResp1.Text);
             listaNomeResp2.Add(txtNomeResp2.Text);
             listaCPFResp1.Add(CPFResp1.Text);
-            listaCPFResp2.Add(CPFResp2.Text);
+            listaCPFResp2.Add(CPFResp2.Text);*/
 
 
         }
         private void listAlunos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtNomeAluno.Text = listaNomes[listAlunos.SelectedIndex];
-            dataNascimento.Value = listaDataNascimento[listAlunos.SelectedIndex];
-            txtAno.Text = listaAno[listAlunos.SelectedIndex];
-            if (listaSexo[listAlunos.SelectedIndex] == 'F')
+            if (listAlunos.SelectedIndex >= 0)
             {
-                btnFem.Checked = true;
+                txtNomeAluno.Text = listaNomes[listAlunos.SelectedIndex];
+                dataNascimento.Value = listaDataNascimento[listAlunos.SelectedIndex];
+                txtAno.Text = listaAno[listAlunos.SelectedIndex];
+                if (listaSexo[listAlunos.SelectedIndex] == 'F')
+                {
+                    btnFem.Checked = true;
+                }
+                else if (listaSexo[listAlunos.SelectedIndex] == 'M')
+                {
+                    btnMasc.Checked = true;
+                }
+                else if (listaSexo[listAlunos.SelectedIndex] == 'X')
+                {
+                    btnOutro.Checked = true;
+                }
+                txtNomeResp1.Text = listaNomeResp1[listAlunos.SelectedIndex];
+                CPFResp1.Text = listaCPFResp1[listAlunos.SelectedIndex];
+                txtNomeResp2.Text = listaNomeResp2[listAlunos.SelectedIndex];
+                CPFResp2.Text = listaCPFResp2[listAlunos.SelectedIndex];
             }
-            else if (listaSexo[listAlunos.SelectedIndex] == 'M')
-            {
-                btnMasc.Checked = true;
-            }
-            else if (listaSexo[listAlunos.SelectedIndex] == 'X')
-            {
-                btnOutro.Checked = true;
-            }
-            txtNomeResp1.Text = listaNomeResp1[listAlunos.SelectedIndex];
-            CPFResp1.Text = listaCPFResp1[listAlunos.SelectedIndex];
-            txtNomeResp2.Text = listaNomeResp2[listAlunos.SelectedIndex];
-            CPFResp2.Text = listaCPFResp2[listAlunos.SelectedIndex];
+            
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -154,6 +183,17 @@ namespace SistemaCadastroAluno
             listaCPFResp1.RemoveAt(listAlunos.SelectedIndex);
             listaCPFResp2.RemoveAt(listAlunos.SelectedIndex);
             listAlunos.Items.RemoveAt(listAlunos.SelectedIndex);
+
+            txtNomeAluno.Text = "";
+            dataNascimento.Value = DateTime.Today;
+            txtAno.Text = "";
+            btnFem.Checked = false;
+            btnMasc.Checked = false;
+            btnOutro.Checked = false;
+            txtNomeResp1.Text = "";
+            CPFResp1.Text = "";
+            txtNomeResp2.Text = "";
+            CPFResp2.Text = "";
         }
     }
 }
