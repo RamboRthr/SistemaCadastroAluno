@@ -16,32 +16,40 @@ namespace SistemaCadastroAluno
             InitializeComponent();
         }
 
-        List<CadastroAluno> cadastroAluno = new List<CadastroAluno>();
+        List<CadastroAluno> cadastros = new List<CadastroAluno>();
+        List<string> listaNomes = new List<string>();
         bool novo;
 
         private void CadastroDoAluno_Load(object sender, EventArgs e)
         {
-
+            novo = true;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (listaNomes.Contains(txtNomeAluno.Text))
+            string charSexo = "";
+
+            if (btnFem.Checked)
             {
-                novo = false;
-                
+                charSexo = "F";
             }
-            else
+            else if (btnMasc.Checked)
             {
-                novo = true;
-                
+                charSexo = "M";
+            }
+            else if (btnOutro.Checked)
+            {
+                charSexo = "X";
             }
             if (novo)
             {
+                CadastroAluno cadastroAluno = new CadastroAluno();
                 if (TudoPreenchido())
                 {
-                    SalvarDados();
+                    SalvarDados(charSexo, cadastroAluno);
                     listAlunos.Items.Add(txtNomeAluno.Text);
+                    listaNomes.Add(cadastroAluno.Nome);
+                    novo = false;
                 }
                 else
                 {
@@ -50,8 +58,31 @@ namespace SistemaCadastroAluno
             }
             else
             {
-                MessageBox.Show("Limpe os dados para cadastrar um novo aluno.");
-            }
+                if (listaNomes.Contains(txtNomeAluno.Text))
+                {
+                    MessageBox.Show("Selecione algum cadastro na lista para atualizar ou insira outros dados para cadastrar o aluno.");
+                }
+                else
+                {
+                    if (listAlunos.SelectedIndex >= 0)
+                    {
+                        cadastros[listAlunos.SelectedIndex].Nome = txtNomeResp1.Text;
+                        cadastros[listAlunos.SelectedIndex].DataNascimento = dataNascimento.Value;
+                        cadastros[listAlunos.SelectedIndex].AnoEscolar = txtAno.Text;
+                        cadastros[listAlunos.SelectedIndex].Sexo = charSexo.ToString();
+                        cadastros[listAlunos.SelectedIndex].NomeResp1 = txtNomeResp1.Text;
+                        cadastros[listAlunos.SelectedIndex].CPFResp1 = CPFResp1.Text;
+                        cadastros[listAlunos.SelectedIndex].NomeResp2 = txtNomeResp2.Text;
+                        cadastros[listAlunos.SelectedIndex].CPFResp2 = CPFResp2.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Selecione um cadastro na lista para atualizar.");
+                    }
+                    
+                }
+                
+            }   
         }
         private bool TudoPreenchido()
         {
@@ -73,93 +104,50 @@ namespace SistemaCadastroAluno
             }
         }
 
-        private void SalvarDados()
+        private void SalvarDados(string sexo, CadastroAluno cadastro)
         {
-            string charSexo = "";
-            
-            if (btnFem.Checked)
-            {
-                charSexo = "F";
-            }
-            else if (btnMasc.Checked)
-            {
-                charSexo = "M";
-            }
-            else if (btnOutro.Checked)
-            {
-                charSexo = "X";
-            }
-
-            cadastroAluno = new CadastroAluno
-            {
-
-                Nome = txtNomeResp1.Text,
-                DataNascimento = dataNascimento.Value,
-                AnoEscolar = txtAno.Text,
-                Sexo = charSexo.ToString(),
-                NomeResp1 = txtNomeResp1.Text,
-                CPFResp1 = CPFResp1.Text,
-                NomeResp2 = txtNomeResp2.Text,
-                CPFResp2 = CPFResp2.Text
-
-
-            };
-
-            /*listaNomes.Add(txtNomeAluno.Text);
-            listaDataNascimento.Add(dataNascimento.Value);
-            listaAno.Add(txtAno.Text.ToString());
-            if (btnFem.Checked)
-            {
-                listaSexo.Add('F');
-
-            }
-            else if (btnMasc.Checked)
-            {
-                listaSexo.Add('M');
-
-            }
-            else if (btnOutro.Checked)
-            {
-                listaSexo.Add('X');
-
-            }
-
-            listaNomeResp1.Add(txtNomeResp1.Text);
-            listaNomeResp2.Add(txtNomeResp2.Text);
-            listaCPFResp1.Add(CPFResp1.Text);
-            listaCPFResp2.Add(CPFResp2.Text);*/
-
+            cadastro.Nome = txtNomeResp1.Text;
+            cadastro.DataNascimento = dataNascimento.Value;
+            cadastro.AnoEscolar = txtAno.Text;
+            cadastro.Sexo = sexo.ToString();
+            cadastro.NomeResp1 = txtNomeResp1.Text;
+            cadastro.CPFResp1 = CPFResp1.Text;
+            cadastro.NomeResp2 = txtNomeResp2.Text;
+            cadastro.CPFResp2 = CPFResp2.Text;
 
         }
         private void listAlunos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            novo = false;
+            
             if (listAlunos.SelectedIndex >= 0)
             {
-                txtNomeAluno.Text = listaNomes[listAlunos.SelectedIndex];
-                dataNascimento.Value = listaDataNascimento[listAlunos.SelectedIndex];
-                txtAno.Text = listaAno[listAlunos.SelectedIndex];
-                if (listaSexo[listAlunos.SelectedIndex] == 'F')
+                txtNomeAluno.Text = cadastros[listAlunos.SelectedIndex].Nome;
+                dataNascimento.Value = cadastros[listAlunos.SelectedIndex].DataNascimento;
+                txtAno.Text = cadastros[listAlunos.SelectedIndex].AnoEscolar;
+                if (cadastros[listAlunos.SelectedIndex].Sexo == "F")
                 {
                     btnFem.Checked = true;
                 }
-                else if (listaSexo[listAlunos.SelectedIndex] == 'M')
+                else if (cadastros[listAlunos.SelectedIndex].Sexo == "M")
                 {
                     btnMasc.Checked = true;
                 }
-                else if (listaSexo[listAlunos.SelectedIndex] == 'X')
+                else if (cadastros[listAlunos.SelectedIndex].Sexo == "X")
                 {
                     btnOutro.Checked = true;
                 }
-                txtNomeResp1.Text = listaNomeResp1[listAlunos.SelectedIndex];
-                CPFResp1.Text = listaCPFResp1[listAlunos.SelectedIndex];
-                txtNomeResp2.Text = listaNomeResp2[listAlunos.SelectedIndex];
-                CPFResp2.Text = listaCPFResp2[listAlunos.SelectedIndex];
+                txtNomeResp1.Text = cadastros[listAlunos.SelectedIndex].NomeResp1;
+                CPFResp1.Text = cadastros[listAlunos.SelectedIndex].CPFResp1;
+                txtNomeResp2.Text = cadastros[listAlunos.SelectedIndex].NomeResp2;
+                CPFResp2.Text = cadastros[listAlunos.SelectedIndex].CPFResp2;
             }
             
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
+            novo = true;
             txtNomeAluno.Text = "";
             dataNascimento.Value = DateTime.Today;
             txtAno.Text = "";
@@ -174,15 +162,7 @@ namespace SistemaCadastroAluno
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            listaNomes.RemoveAt(listAlunos.SelectedIndex);
-            listaDataNascimento.RemoveAt(listAlunos.SelectedIndex);
-            listaAno.RemoveAt(listAlunos.SelectedIndex);
-            listaSexo.RemoveAt(listAlunos.SelectedIndex);
-            listaNomeResp1.RemoveAt(listAlunos.SelectedIndex);
-            listaNomeResp2.RemoveAt(listAlunos.SelectedIndex);
-            listaCPFResp1.RemoveAt(listAlunos.SelectedIndex);
-            listaCPFResp2.RemoveAt(listAlunos.SelectedIndex);
-            listAlunos.Items.RemoveAt(listAlunos.SelectedIndex);
+            cadastros.RemoveAt(listAlunos.SelectedIndex);
 
             txtNomeAluno.Text = "";
             dataNascimento.Value = DateTime.Today;

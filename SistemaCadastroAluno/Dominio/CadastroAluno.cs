@@ -15,7 +15,7 @@ namespace SistemaCadastroAluno.Dominio
         public string NomeResp2 { get; set; }
         public string CPFResp2 { get; set; }
 
-        public CadastroAluno( string nome, DateTime dataNascimento, string ano, string sexo, string nomeResp1, string cpfResp1, string nomeResp2, string cpfResp2)
+        /*public CadastroAluno( string nome, DateTime dataNascimento, string ano, string sexo, string nomeResp1, string cpfResp1, string nomeResp2, string cpfResp2)
         {
             Nome = nome;
             DataNascimento = dataNascimento;
@@ -25,6 +25,6 @@ namespace SistemaCadastroAluno.Dominio
             CPFResp1 = cpfResp1;
             NomeResp2 = nomeResp2;
             CPFResp2 = cpfResp2;
-        }
+        }*/
     }
 }

@@ -70,11 +70,13 @@ namespace SistemaCadastroAluno
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(212, 76);
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(182, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
+            this.label2.Size = new System.Drawing.Size(178, 30);
             this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.label2.Text = "Cadastro do Aluno";
             // 
             // label3
             // 
@@ -105,6 +107,7 @@ namespace SistemaCadastroAluno
             // 
             // dataNascimento
             // 
+            this.dataNascimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dataNascimento.Location = new System.Drawing.Point(225, 177);
             this.dataNascimento.Name = "dataNascimento";
             this.dataNascimento.Size = new System.Drawing.Size(200, 23);
@@ -171,7 +174,7 @@ namespace SistemaCadastroAluno
             // CPFResp1
             // 
             this.CPFResp1.Location = new System.Drawing.Point(225, 342);
-            this.CPFResp1.Mask = "999.999.999-99";
+            this.CPFResp1.Mask = "999,999,999-99";
             this.CPFResp1.Name = "CPFResp1";
             this.CPFResp1.Size = new System.Drawing.Size(100, 23);
             this.CPFResp1.TabIndex = 18;
@@ -197,7 +200,7 @@ namespace SistemaCadastroAluno
             // CPFResp2
             // 
             this.CPFResp2.Location = new System.Drawing.Point(225, 441);
-            this.CPFResp2.Mask = "999.999.999-99";
+            this.CPFResp2.Mask = "999,999,999-99";
             this.CPFResp2.Name = "CPFResp2";
             this.CPFResp2.Size = new System.Drawing.Size(100, 23);
             this.CPFResp2.TabIndex = 21;
@@ -285,7 +288,7 @@ namespace SistemaCadastroAluno
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 29;
-            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Text = "Novo";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
