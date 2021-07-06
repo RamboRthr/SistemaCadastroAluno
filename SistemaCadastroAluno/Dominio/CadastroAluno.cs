@@ -15,16 +15,9 @@ namespace SistemaCadastroAluno.Dominio
         public string NomeResp2 { get; set; }
         public string CPFResp2 { get; set; }
 
-        /*public CadastroAluno( string nome, DateTime dataNascimento, string ano, string sexo, string nomeResp1, string cpfResp1, string nomeResp2, string cpfResp2)
+        public override string ToString()
         {
-            Nome = nome;
-            DataNascimento = dataNascimento;
-            AnoEscolar = ano;
-            Sexo = sexo;
-            NomeResp1 = nomeResp1;
-            CPFResp1 = cpfResp1;
-            NomeResp2 = nomeResp2;
-            CPFResp2 = cpfResp2;
-        }*/
+            return $"{Nome} - {DataNascimento} - {AnoEscolar}";
+        }
     }
 }
